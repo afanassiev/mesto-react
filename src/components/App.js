@@ -10,7 +10,8 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState({isOpen: false, name: '', link: ''});
+  const [selectedCard, setSelectedCard] = useState({isOpen: false});
+
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -24,15 +25,15 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  function handleCardClick(name, link) {
-    setSelectedCard({isOpen: true, name: name, link: link});
+  function handleCardClick(card) {
+    setSelectedCard({...card, isOpen: true});
   }
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard({isOpen: false, name: '', link: ''});
+    setSelectedCard({isOpen: false});
   }
 
   return (
@@ -49,9 +50,10 @@ function App() {
         <PopupWithForm
           title="Редактировать профиль"
           name="edit"
+          buttonText="Сохранить"
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-          children={
+          >
             <>
               <label className="popup__label">
                 <input className="popup__input popup__input_name" type="text" id="profileName-input"
@@ -64,13 +66,14 @@ function App() {
               <span className="popup__error" id="descr-input-error"/>
               </label>
             </>
-          }/>
+        </PopupWithForm>
         <PopupWithForm
           title="Новое место"
           name="add"
+          buttonText="Добавить!"
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
-          children={
+          >
             <>
               <label className="popup__label">
                 <input className="popup__input popup__input_placename" type="text" id="placename-input"
@@ -83,23 +86,20 @@ function App() {
                 <span className="popup__error" id="url-input-error"/>
               </label>
             </>
-          }
-        />
-          <PopupWithForm
+        </PopupWithForm>
+        <PopupWithForm
             title="Вы уверены?"
             name="delete-confirmation"
-            children={
-              <>
-                <button className="popup__savebutton popup__confirm-button" type="submit">Да</button>
-              </>
-            }
-          />
+            buttonText="Да"
+            >
+          </PopupWithForm>
           <PopupWithForm
             title="Обновить аватар"
             name="avatar"
+            buttonText="Сохранить"
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
-            children={
+            >
               <>
                 <label className="popup__label">
                   <input className="popup__input popup__input_avatar" type="url" id="url-avatar" name="urlAvatar"
@@ -107,8 +107,7 @@ function App() {
                   <span className="popup__error" id="url-avatar-error"/>
                 </label>
               </>
-            }
-          />
+          </PopupWithForm>
         <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
       </div>
     </div>
