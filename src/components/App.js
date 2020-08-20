@@ -10,7 +10,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState({isOpen: false});
+  const [selectedCard, setSelectedCard] = useState('');
 
 
   function handleEditAvatarClick() {
@@ -26,14 +26,16 @@ function App() {
   }
 
   function handleCardClick(card) {
-    setSelectedCard({...card, isOpen: true});
+    // setSelectedCard({...card, isOpen: true});
+    setSelectedCard(card);
   }
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard({isOpen: false});
+    // setSelectedCard({isOpen: false});
+    setSelectedCard('');
   }
 
   return (
