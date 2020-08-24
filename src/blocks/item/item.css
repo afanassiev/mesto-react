@@ -4,6 +4,7 @@
 @import url(__fragment/item__fragment.css);
 @import url(__template/item__template.css);
 @import url(__delete-button/item__delete-button.css);
+@import url(__delete-button/item__delete-button_hidden.css);
 @import url(__checkbox/_active/item__checkbox_active.css);
 @import url(__like/item__like.css);
 @import url(__like-counter/item__like-counter.css);
