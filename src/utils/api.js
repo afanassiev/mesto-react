@@ -66,24 +66,6 @@ class Api {
       .catch(this._errorHandler)
   }
 
-  // likeCard(cardId) {
-  //   return fetch(`${this.url}cards/likes/${cardId}`, {
-  //     method: 'PUT',
-  //     headers: this.headers
-  //   })
-  //     .then(this._resultHandler)
-  //     .catch(this._errorHandler)
-  // }
-  //
-  // dislikeCard(cardId) {
-  //   return fetch(`${this.url}cards/likes/${cardId}`, {
-  //     method: 'DELETE',
-  //     headers: this.headers
-  //     })
-  //     .then(this._resultHandler)
-  //     .catch(this._errorHandler)
-  // }
-
   changeLikeCardStatus (cardId, isLiked) {
     if (isLiked) {
       return fetch(`${this.url}cards/likes/${cardId}`, {

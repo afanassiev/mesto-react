@@ -15,6 +15,5 @@
 }
 
 .item__delete-button:hover {
-    /*background-image: url("../../../images/delete-button-hover.svg");*/
     opacity: 0.6;
 }

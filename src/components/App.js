@@ -44,7 +44,6 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    // setSelectedCard({isOpen: false});
     setSelectedCard('');
   }
 
@@ -58,7 +57,6 @@ function App() {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onCardClick={handleCardClick}
-          // onCardLike={handleCardLike}
         />
         <Footer/>
         <PopupWithForm

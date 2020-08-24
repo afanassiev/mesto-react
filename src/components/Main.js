@@ -6,18 +6,9 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 export default function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick}) {
 
   const currentUser = React.useContext(CurrentUserContext);
-  // const [userName, setUserName] = useState('');
-  // const [userDescription, setUserDescription] = useState('');
-  // const [userAvatar, setUserAvatar] = useState('');
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    // api.getUserInfo()
-    //   .then(({name, description, avatar}) => {
-    //     setUserName(name)
-    //     setUserDescription(description)
-    //     setUserAvatar(avatar)
-    //   });
     api.getInitialCards()
       .then((data) => {
         setCards(data)
@@ -25,14 +16,9 @@ export default function Main({onEditAvatar, onEditProfile, onAddPlace, onCardCli
   }, [])
 
   function handleCardLike(card) {
-    // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(i => i._id === currentUser._id);
-
-    // Отправляем запрос в API и получаем обновлённые данные карточки
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
       const newCards = cards.map((c) => c._id === card._id ? newCard : c);
-      // Обновляем стейт
       setCards(newCards);
     });
   }
