@@ -34,8 +34,8 @@ class Api {
         method: 'PATCH',
         headers: this.headers,
         body: JSON.stringify({
-          name: data.profileNameInput,
-          about: data.profileDescrInput
+          name: data.name,
+          about: data.about
       })
     })
       .then(this._resultHandler)
@@ -58,8 +58,8 @@ class Api {
         method: 'POST',
         headers: this.headers,
         body: JSON.stringify({
-          name: item.placeNameInput,
-          link: item.urlInput
+          name: item.name,
+          link: item.link
         })
       })
       .then(this._resultHandler)
@@ -93,12 +93,12 @@ class Api {
       .catch(this._errorHandler)
   }
 
-  changeAvatar(avatar) {
+  setUserAvatar(avatar) {
     return fetch(`${this.url}users/me/avatar`, {
       method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify({
-        avatar: avatar.urlAvatar
+        avatar: avatar.avatar
       })
     })
         .then(this._resultHandler)
