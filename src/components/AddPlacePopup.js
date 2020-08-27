@@ -11,13 +11,18 @@ function AddPlacePopup({isOpen, onClose, onAdderSubmit}) {
     setLink('');
   }
 
+  useEffect(() => {
+    if (!isOpen) {
+      clearInputs();
+    }
+  })
+
   function handleSubmit(evt) {
     evt.preventDefault();
     onAdderSubmit({
       name,
       link
     });
-    clearInputs();
   }
 
   function handleName(evt) {
