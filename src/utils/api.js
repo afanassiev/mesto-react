@@ -14,10 +14,6 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}`)
   }
 
-  _errorHandler = (err) => {
-    console.log(err);
-  }
-
   getUserInfo() {
     return fetch(`${this.url}users/me`,
       {
@@ -25,7 +21,6 @@ class Api {
         headers: this.headers
       })
       .then(this._resultHandler)
-      .catch(this._errorHandler)
   }
 
   setUserInfo(data) {
@@ -39,7 +34,6 @@ class Api {
       })
     })
       .then(this._resultHandler)
-      .catch(this._errorHandler)
   }
 
   getInitialCards() {
@@ -49,7 +43,6 @@ class Api {
         headers: this.headers
       })
       .then(this._resultHandler)
-      .catch(this._errorHandler)
   }
 
   addNewCard(item) {
@@ -63,7 +56,6 @@ class Api {
         })
       })
       .then(this._resultHandler)
-      .catch(this._errorHandler)
   }
 
   changeLikeCardStatus (cardId, isLiked) {
@@ -80,7 +72,6 @@ class Api {
           headers: this.headers
           })
           .then(this._resultHandler)
-          .catch(this._errorHandler)
     }
   }
 
@@ -90,7 +81,6 @@ class Api {
       headers: this.headers
     })
       .then(this._resultHandler)
-      .catch(this._errorHandler)
   }
 
   setUserAvatar(avatar) {
@@ -102,7 +92,6 @@ class Api {
       })
     })
         .then(this._resultHandler)
-        .catch(this._errorHandler)
   }
 }
 

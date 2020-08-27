@@ -21,11 +21,16 @@ function App() {
   const [cards, setCards] = useState([]);
   const [removingCard, setRemovingCard] = useState([]);
 
+  const errorHandler = err => {
+    console.log(err);
+  }
+
   useEffect(() => {
     api.getUserInfo()
       .then((res) => {
         setCurrentUser(res)
       })
+      .catch(errorHandler)
   }, [])
 
   useEffect(() => {
@@ -33,6 +38,7 @@ function App() {
       .then((data) => {
         setCards(data)
       })
+      .catch(errorHandler)
   }, [])
 
 
@@ -54,10 +60,12 @@ function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      const newCards = cards.map((c) => c._id === card._id ? newCard : c);
-      setCards(newCards);
-    });
+    api.changeLikeCardStatus(card._id, !isLiked)
+        .then((newCard) => {
+          const newCards = cards.map((c) => c._id === card._id ? newCard : c);
+          setCards(newCards);
+    })
+      .catch(errorHandler)
   }
 
   function handleCardDelete() {
@@ -65,10 +73,9 @@ function App() {
       .then(() => {
         const newCards = cards.filter((c) => c._id !== removingCard._id);
         setCards(newCards);
-      })
-      .finally(() => {
         closeAllPopups();
       })
+      .catch(errorHandler)
   }
 
   function handleRemovePopup(card) {
@@ -88,30 +95,27 @@ function App() {
     api.setUserInfo(data)
       .then((data) => {
         setCurrentUser(data);
-      })
-      .finally(() => {
         closeAllPopups();
       })
+      .catch(errorHandler)
   }
 
   function handleUpdateAvatar(data) {
     api.setUserAvatar(data)
       .then((data) => {
         setCurrentUser(data);
-      })
-      .finally(() => {
         closeAllPopups();
       })
+      .catch(errorHandler)
   }
 
   function handleAddPlaceSubmit(data) {
     api.addNewCard(data)
       .then((newCard) => {
         setCards([...cards, newCard])
-      })
-      .finally(() => {
         closeAllPopups();
       })
+      .catch(errorHandler)
   }
 
   return (
